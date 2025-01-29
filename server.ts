@@ -18,7 +18,7 @@ const io = new Server(expressServer, {
     origin:
       process.env.NODE_ENV === "production"
         ? false
-        : ["http://localhost:5500", "http://localhost:3001"],
+        : ["http://localhost:5500", "https://personal-websit-eosin.vercel.app"],
   },
 });
 io.on("connection", (socket: any) => {

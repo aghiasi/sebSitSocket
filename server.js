@@ -19,11 +19,10 @@ const io = new socket_io_1.Server(expressServer, {
     cors: {
         origin: process.env.NODE_ENV === "production"
             ? false
-            : ["http://localhost:5500", "http://localhost:3001"],
+            : ["http://localhost:5500", "https://personal-websit-eosin.vercel.app"],
     },
 });
 io.on("connection", (socket) => {
-    console.log(`user ${socket.id} connected`);
     //only to user connected
     socket.emit("message", buildMsg(ADMIN, "wellcome to chat app"));
     socket.on("enterRoom", ({ name, room }) => {
