@@ -15,13 +15,7 @@ let UserState = {
         }
     },
 };
-const io = new socket_io_1.Server(expressServer, {
-    cors: {
-        origin: process.env.NODE_ENV === "production"
-            ? false
-            : ["http://localhost:5500", "https://personal-websit-eosin.vercel.app"],
-    },
-});
+const io = new socket_io_1.Server(expressServer, {});
 io.on("connection", (socket) => {
     //only to user connected
     socket.emit("message", buildMsg(ADMIN, "wellcome to chat app"));

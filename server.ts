@@ -14,12 +14,7 @@ let UserState: State = {
   },
 };
 const io = new Server(expressServer, {
-  cors: {
-    origin:
-      process.env.NODE_ENV === "production"
-        ? false
-        : ["http://localhost:5500", "https://personal-websit-eosin.vercel.app"],
-  },
+
 });
 io.on("connection", (socket: any) => {
   //only to user connected
