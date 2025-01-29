@@ -2,10 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const socket_io_1 = require("socket.io");
-const cors = require('cors');
 const ADMIN = "Admin";
 const app = express();
-app.use(cors);
 const expressServer = app.listen(80, () => {
     console.log("server up ");
 });
@@ -17,7 +15,11 @@ let UserState = {
         }
     },
 };
-const io = new socket_io_1.Server(expressServer);
+const io = new socket_io_1.Server(expressServer, {
+    cors: {
+        origin: ["http://localhost:3000", "https://personal-websit-eosin.vercel.app"]
+    }
+});
 io.on("connection", (socket) => {
     //only to user connected
     socket.emit("message", buildMsg(ADMIN, "wellcome to chat app"));

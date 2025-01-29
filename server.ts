@@ -1,9 +1,7 @@
 const express = require("express");
 import { Server } from "socket.io";
-const cors = require('cors');
 const ADMIN = "Admin";
 const app = express();
-app.use(cors)
 const expressServer = app.listen(80, () => {
   console.log("server up ");
 });
@@ -15,7 +13,12 @@ let UserState: State = {
     }
   },
 };
-const io = new Server(expressServer);
+const io = new Server(expressServer,{
+  cors:{
+    origin:
+      ["http://localhost:3000","https://personal-websit-eosin.vercel.app"]
+  }
+});
 io.on("connection", (socket: any) => {
   //only to user connected
   socket.emit("message",buildMsg(ADMIN,"wellcome to chat app"));
