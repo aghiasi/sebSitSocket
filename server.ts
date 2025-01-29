@@ -1,9 +1,10 @@
 const express = require("express");
 import { Server } from "socket.io";
-const cros = require("cros")
+const cors = require('cors');
 const ADMIN = "Admin";
 const app = express();
-const expressServer = app.listen(3000, () => {
+app.use(cors)
+const expressServer = app.listen(80, () => {
   console.log("server up ");
 });
 let UserState: State = {
@@ -14,7 +15,6 @@ let UserState: State = {
     }
   },
 };
-expressServer.use(cros)
 const io = new Server(expressServer);
 io.on("connection", (socket: any) => {
   //only to user connected
