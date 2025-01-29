@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const socket_io_1 = require("socket.io");
+const cros = require("cros");
 const ADMIN = "Admin";
 const app = express();
 const expressServer = app.listen(3000, () => {
@@ -15,6 +16,7 @@ let UserState = {
         }
     },
 };
+expressServer.use(cros);
 const io = new socket_io_1.Server(expressServer);
 io.on("connection", (socket) => {
     //only to user connected
