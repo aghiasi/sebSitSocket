@@ -15,7 +15,7 @@ let UserState = {
         }
     },
 };
-const io = new socket_io_1.Server(expressServer, {});
+const io = new socket_io_1.Server(expressServer);
 io.on("connection", (socket) => {
     //only to user connected
     socket.emit("message", buildMsg(ADMIN, "wellcome to chat app"));
