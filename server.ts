@@ -16,7 +16,7 @@ let UserState: State = {
 const io = new Server(expressServer,{
   cors:{
     origin:
-      ["http://localhost:3000","https://personal-websit-eosin.vercel.app"]
+      ["http://localhost:3000","https://personal-websit-eosin.vercel.app","https://aghiasi.onrender.com"]
   }
 });
 io.on("connection", (socket: any) => {
