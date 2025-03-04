@@ -93,7 +93,7 @@ io.on("connection", (socket) => {
         const room = (_a = getUser(socket.id)) === null || _a === void 0 ? void 0 : _a.room;
         if (room) {
             io.to(room).emit("message", buildMsg(name, text));
-            io.emit("toAdmin", buildMsg(room, text));
+            io.emit("toAdmin", buildMsg(name + " " + room, text));
         }
     });
     socket.on("activity", (name) => {
