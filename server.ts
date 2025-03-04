@@ -73,7 +73,6 @@ io.on("connection", (socket: any) => {
     }
   });
   socket.on("roomList",()=>{
-    console.log("working")
     io.emit("roomList",{
       rooms:getAllActiveRooms()
     })
@@ -82,10 +81,11 @@ io.on("connection", (socket: any) => {
     const room = getUser(socket.id)?.room
     if(room){
       io.to(room).emit("message",buildMsg(name,text))
+      io.emit("toAdmin",buildMsg(name,text))
     }
   });
   socket.on("activity", (name: string) => {
-    const room = getUser(socket.id)?.room
+    const room = getUser(socket.id)?.room 
     if(room){
       socket.broadcast.to(room).emit("activity",name)
     }

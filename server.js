@@ -84,7 +84,6 @@ io.on("connection", (socket) => {
         }
     });
     socket.on("roomList", () => {
-        console.log("working");
         io.emit("roomList", {
             rooms: getAllActiveRooms()
         });
@@ -94,6 +93,7 @@ io.on("connection", (socket) => {
         const room = (_a = getUser(socket.id)) === null || _a === void 0 ? void 0 : _a.room;
         if (room) {
             io.to(room).emit("message", buildMsg(name, text));
+            io.emit("toAdmin", buildMsg(name, text));
         }
     });
     socket.on("activity", (name) => {
