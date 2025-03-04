@@ -81,7 +81,7 @@ io.on("connection", (socket: any) => {
     const room = getUser(socket.id)?.room
     if(room){
       io.to(room).emit("message",buildMsg(name,text))
-      io.emit("toAdmin",buildMsg(name,text))
+      io.emit("toAdmin",buildMsg(room,text))
     }
   });
   socket.on("activity", (name: string) => {
