@@ -1,9 +1,30 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const socket_io_1 = require("socket.io");
+require('dotenv').config();
+const nodemailer = require("nodemailer");
 const ADMIN = "Admin";
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var mailOptions = {
+        from: 'ghiasikhamene@outlook.com',
+        to: 'ghiasikhamene@gmail.com',
+        subject: "some",
+        text: "some"
+    };
+}));
 const expressServer = app.listen(80, () => {
     console.log("server up ");
 });
@@ -61,6 +82,12 @@ io.on("connection", (socket) => {
                 rooms: getAllActiveRooms()
             });
         }
+    });
+    socket.on("roomList", () => {
+        console.log("working");
+        io.emit("roomList", {
+            rooms: getAllActiveRooms()
+        });
     });
     socket.on("message", ({ name, text }) => {
         var _a;

@@ -1,15 +1,26 @@
 const express = require("express");
 import { Server } from "socket.io";
+require('dotenv').config()
+const nodemailer = require("nodemailer")
 const ADMIN = "Admin";
 const app = express();
-const expressServer = app.listen(80, () => {
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.post("/",async(req:Request,res:Response)=>{
+    var mailOptions = {
+  from: 'ghiasikhamene@outlook.com',
+  to: 'ghiasikhamene@gmail.com',
+  subject: "some",
+  text: "some"
+}})
+const expressServer = app.listen(80, () => {  
   console.log("server up ");
 });
 let UserState: State = {
   users: [],
   setUsers: function (newArrayUsers: ArrayUser) {
     if (newArrayUsers) {
-      this.users = newArrayUsers;
+      this.users = newArrayUsers; 
     }
   },
 };
@@ -61,6 +72,12 @@ io.on("connection", (socket: any) => {
     })
     }
   });
+  socket.on("roomList",()=>{
+    console.log("working")
+    io.emit("roomList",{
+      rooms:getAllActiveRooms()
+    })
+  })
   socket.on("message", ({name,text}:{name:string,text:string}) => {
     const room = getUser(socket.id)?.room
     if(room){
