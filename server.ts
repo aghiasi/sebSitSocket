@@ -23,6 +23,7 @@ const io = new Server(expressServer, {
       "http://localhost:3000",
       "https://personal-websit-eosin.vercel.app",
       "https://aghiasi.onrender.com",
+      "https://aghiasi.vercel.app",
     ],
   },
 });
