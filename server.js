@@ -35,6 +35,7 @@ var io = new socket_io_1.Server(expressServer, {
             "https://personal-websit-eosin.vercel.app",
             "https://aghiasi.onrender.com",
             "https://aghiasi.vercel.app",
+            "https://ghiasishendabadi.vercel.app/",
         ],
     },
 });
