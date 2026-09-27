@@ -24,6 +24,7 @@ const io = new Server(expressServer, {
       "https://personal-websit-eosin.vercel.app",
       "https://aghiasi.onrender.com",
       "https://aghiasi.vercel.app",
+      "https://ghiasishendabadi.vercel.app/",
     ],
   },
 });
